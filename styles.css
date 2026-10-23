@@ -1,0 +1,289 @@
+#kinosub-root,
+#kinosub-root * {
+  box-sizing: border-box !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+#kinosub-root {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  right: 18px !important;
+  bottom: 18px !important;
+  color: #f8fafc !important;
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+}
+
+.kinosub-video-overlay {
+  position: fixed !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  gap: 0.32em !important;
+  padding: 0 3% 5% !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.kinosub-video-overlay[hidden] {
+  display: none !important;
+}
+
+.kinosub-video-overlay .kinosub-cue {
+  position: static !important;
+  width: 100% !important;
+  color: #fff !important;
+  font-size: clamp(18px, 3.1vw, 38px) !important;
+  font-weight: 700 !important;
+  line-height: 1.22 !important;
+  text-align: center !important;
+  white-space: pre-line !important;
+  text-shadow: -2px -2px 2px #000, 2px -2px 2px #000, -2px 2px 2px #000, 2px 2px 2px #000 !important;
+}
+
+.kinosub-video-overlay .kinosub-cue-primary {
+  order: 1 !important;
+}
+
+.kinosub-video-overlay .kinosub-cue-secondary {
+  order: 2 !important;
+  color: #fde68a !important;
+}
+
+#kinosub-launcher {
+  display: block !important;
+  width: 54px !important;
+  height: 42px !important;
+  margin-left: auto !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 12px !important;
+  background: #7c3aed !important;
+  color: white !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+#kinosub-launcher sup {
+  font-size: 9px !important;
+}
+
+#kinosub-panel {
+  width: 330px !important;
+  margin-bottom: 10px !important;
+  padding: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 16px !important;
+  background: rgba(15, 23, 42, 0.97) !important;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.48) !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+#kinosub-panel[hidden] {
+  display: none !important;
+}
+
+#kinosub-panel header,
+.kinosub-track-title,
+.kinosub-actions,
+.kinosub-sync,
+.kinosub-toggle {
+  display: flex !important;
+  align-items: center !important;
+}
+
+#kinosub-panel header {
+  justify-content: space-between !important;
+  margin-bottom: 12px !important;
+  font-size: 16px !important;
+}
+
+#kinosub-close {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #94a3b8 !important;
+  cursor: pointer !important;
+  font-size: 23px !important;
+}
+
+.kinosub-toggle {
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+  color: #cbd5e1 !important;
+}
+
+.kinosub-toggle input {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  accent-color: #8b5cf6 !important;
+}
+
+#kinosub-diagnostic {
+  margin: 0 0 10px !important;
+  padding: 8px 9px !important;
+  border-radius: 8px !important;
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+  font-size: 11px !important;
+}
+
+#kinosub-diagnostic[data-level="ok"] {
+  background: rgba(5, 150, 105, 0.2) !important;
+  color: #6ee7b7 !important;
+}
+
+#kinosub-diagnostic[data-level="error"] {
+  background: rgba(220, 38, 38, 0.2) !important;
+  color: #fca5a5 !important;
+}
+
+#kinosub-autosync {
+  display: block !important;
+  width: 100% !important;
+  min-height: 34px !important;
+  margin: 0 0 6px !important;
+  padding: 7px 10px !important;
+  border: 1px solid #0ea5e9 !important;
+  border-radius: 9px !important;
+  background: #0369a1 !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+#kinosub-autosync:disabled {
+  cursor: progress !important;
+  opacity: 0.75 !important;
+}
+
+#kinosub-reset-sync {
+  display: block !important;
+  width: 100% !important;
+  min-height: 28px !important;
+  margin: 0 0 6px !important;
+  padding: 5px 9px !important;
+  border: 1px solid #475569 !important;
+  border-radius: 8px !important;
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+  cursor: pointer !important;
+  font-size: 11px !important;
+}
+
+#kinosub-autosync-status {
+  min-height: 16px !important;
+  margin: 0 2px 9px !important;
+  color: #94a3b8 !important;
+  font-size: 11px !important;
+}
+
+#kinosub-autosync-status[data-level="complete"] {
+  color: #6ee7b7 !important;
+}
+
+#kinosub-autosync-status[data-level="error"] {
+  color: #fca5a5 !important;
+}
+
+.kinosub-track {
+  padding: 12px !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+  background: #111827 !important;
+}
+
+.kinosub-track + .kinosub-track {
+  margin-top: 9px !important;
+}
+
+.kinosub-track-title {
+  justify-content: space-between !important;
+  gap: 8px !important;
+  margin-bottom: 9px !important;
+}
+
+.kinosub-track-title b {
+  color: #f8fafc !important;
+  font-size: 13px !important;
+}
+
+.kinosub-status {
+  max-width: 145px !important;
+  overflow: hidden !important;
+  color: #94a3b8 !important;
+  font-size: 11px !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.kinosub-actions,
+.kinosub-sync {
+  gap: 7px !important;
+}
+
+.kinosub-sync {
+  margin-top: 8px !important;
+  color: #94a3b8 !important;
+  font-size: 12px !important;
+}
+
+.kinosub-sync span {
+  margin-right: auto !important;
+}
+
+.kinosub-sync output {
+  min-width: 42px !important;
+  color: #e2e8f0 !important;
+  text-align: center !important;
+}
+
+.kinosub-actions button,
+.kinosub-sync button {
+  min-height: 28px !important;
+  padding: 5px 9px !important;
+  border: 1px solid #475569 !important;
+  border-radius: 7px !important;
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+}
+
+.kinosub-actions .kinosub-load {
+  flex: 1 !important;
+  border-color: #7c3aed !important;
+  background: #6d28d9 !important;
+  color: white !important;
+}
+
+.kinosub-actions button:disabled {
+  cursor: default !important;
+  opacity: 0.45 !important;
+}
+
+.kinosub-hint {
+  margin: 10px 2px 0 !important;
+  color: #94a3b8 !important;
+  font-size: 11px !important;
+}
+
+@media (max-width: 480px) {
+  #kinosub-root {
+    right: 10px !important;
+    bottom: 10px !important;
+  }
+
+  #kinosub-panel {
+    width: min(330px, calc(100vw - 20px)) !important;
+  }
+}

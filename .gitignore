@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+._*
+.AppleDouble
+
+# Local credentials and environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.mobileprovision
+
+# Build products and profiling
+node_modules/
+dist/
+build/
+.build/
+DerivedData/
+*.app/
+*.dSYM/
+*.xcarchive/
+*.xcresult/
+*.profraw
+*.profdata
+*.log
+
+# Local Xcode settings
+xcuserdata/
+*.xcuserstate
+
+# Browser automation artifacts
+.playwright-cli/
+playwright-report/
+test-results/
+
+# Local extension packaging copies
+/kinox-dual-subtitles/
+/kinox-dual-subtitles.zip

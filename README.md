@@ -1,89 +1,89 @@
-# KinoX — двойные субтитры
+# KinoX — Dual Subtitles
 
-Смотрите видео с двумя независимыми дорожками субтитров: оригиналом и переводом. Проект включает нативный проигрыватель для macOS и расширение для Chrome/Edge.
+Watch videos with two independent subtitle tracks: the original dialogue and a translation. The project includes a native macOS player and a Chrome/Edge extension.
 
 | | KinoX Player | KinoX Dual Subtitles |
 | --- | --- | --- |
-| Платформа | macOS 13+ | Chrome / Edge, Manifest V3 |
-| Видео | Локальные файлы | HTML5-плееры на `kinox.to` и его поддоменах |
-| Субтитры | Две дорожки SRT / WebVTT | Две дорожки SRT / WebVTT |
-| Синхронизация | Ручная, по речи, коррекция дрейфа | Ручная и определение сдвига по аудио |
-| Поиск субтитров | Локальная папка и OpenSubtitles.com | Загрузка файлов пользователем |
-| Исходники | [`native/`](native/) | Корень репозитория |
+| Platform | macOS 13+ | Chrome / Edge, Manifest V3 |
+| Video source | Local files | HTML5 players on `kinox.to` and its subdomains |
+| Subtitles | Two SRT / WebVTT tracks | Two SRT / WebVTT tracks |
+| Synchronization | Manual offsets, speech-based alignment, drift correction | Manual offsets and audio-based offset detection |
+| Subtitle search | Local folders and OpenSubtitles.com | User-selected files |
+| Source code | [`native/`](native/) | Repository root |
 
-## Быстрый старт
+## Quick Start
 
-Склонируйте репозиторий или скачайте его через **Code → Download ZIP** и распакуйте:
+Clone the repository, or download and extract it using **Code → Download ZIP**:
 
 ```sh
 git clone https://github.com/Xenox-developer/kinoxSub.git
 cd kinoxSub
 ```
 
-### Приложение для macOS
+### macOS App
 
-Для сборки нужен Xcode с macOS SDK и инструментами командной строки. При первой сборке требуется интернет для загрузки Swift-зависимостей; версии закреплены в проекте и `Package.resolved`.
+Building requires Xcode with the macOS SDK and command-line tools. The first build needs an internet connection to download Swift dependencies; versions are pinned in the project and `Package.resolved`.
 
 ```sh
 ./native/Scripts/build-release.sh
 open native/dist/KinoXPlayer.app
 ```
 
-Скрипт создаст приложение с локальной ad-hoc подписью. Готовые `.app` и загружаемые языковые модели не входят в исходники репозитория. Для разработки откройте `native/KinoXPlayer.xcodeproj`, выберите схему **KinoXPlayer**, устройство **My Mac** и нажмите `Command–R`.
+The script creates an app with a local ad-hoc signature. Built `.app` bundles and downloadable language models are not included in the repository. For development, open `native/KinoXPlayer.xcodeproj`, select the **KinoXPlayer** scheme and **My Mac** destination, then press `Command–R`.
 
-Откройте видео через `Command–O` или перетащите файл в окно. Загрузите оригинальные субтитры в **S1**, перевод — в **S2**. Дорожки можно независимо включать, заменять, оформлять и сдвигать по времени. Положительный сдвиг задерживает субтитры, отрицательный показывает их раньше.
+Open a video with `Command–O` or drag it into the window. Load the original subtitles into **S1** and the translation into **S2**. Each track can be enabled, replaced, styled, and shifted independently. A positive offset delays subtitles; a negative offset shows them earlier.
 
-Основные возможности:
+Features include:
 
-- автоматическая подгонка субтитров по речи, включая постоянный сдвиг и накопительный дрейф;
-- поиск подходящих SRT/VTT рядом с фильмом и в OpenSubtitles.com;
-- смысловое сопоставление фраз S1 ↔ S2 с дополнительной локальной моделью;
-- отдельные настройки шрифта, цвета, фона и положения дорожек;
-- полноэкранный режим, скорость 0,5–2×, сохранение позиции просмотра;
-- русскоязычный интерфейс и горячие клавиши.
+- automatic alignment to speech, including constant offsets and accumulated timing drift;
+- matching SRT/VTT files from local folders and OpenSubtitles.com;
+- semantic matching of S1 ↔ S2 phrases using an optional local model;
+- separate font, color, background, and position settings for each track;
+- fullscreen playback, 0.5–2× speed, and playback position persistence;
+- a Russian-language interface and keyboard shortcuts.
 
-Поиск в OpenSubtitles.com требует личного API-ключа, который вводится в приложении и хранится в Связке ключей macOS. Для смыслового связывания фраз установите модель через **Настройки → Субтитры → Связывание фраз**: загрузка составляет около 245 МБ, последующая обработка выполняется локально.
+OpenSubtitles.com search requires a personal API key, entered in the app and stored in macOS Keychain. To enable semantic phrase matching, install the model through **Settings → Subtitles → Phrase Matching**. The download is approximately 245 MB; subsequent processing runs locally. The app currently uses Russian UI labels; control names in this documentation are translated into English.
 
-Подробности настройки, поиска и управления: [руководство KinoX Player](native/README.md).
+See the [KinoX Player guide](native/README.md) for detailed setup, search, and playback instructions.
 
-### Расширение для Chrome / Edge
+### Chrome / Edge Extension
 
-Сборка и установка npm-зависимостей не нужны.
+No build step or npm dependency installation is required.
 
-1. Откройте `chrome://extensions` или `edge://extensions`.
-2. Включите **Режим разработчика** и нажмите **Загрузить распакованное расширение**.
-3. Выберите корень скачанного репозитория — папку с `manifest.json`.
-4. Откройте фильм на `kinox.to`, запустите видео и нажмите фиолетовую кнопку **CC²** в правом нижнем углу.
-5. Загрузите оригинальные субтитры в дорожку 1, перевод — в дорожку 2.
+1. Open `chrome://extensions` or `edge://extensions`.
+2. Enable **Developer mode** and click **Load unpacked**.
+3. Select the repository root: the folder containing `manifest.json`.
+4. Open a movie on `kinox.to`, start playback, and click the purple **CC²** button in the bottom-right corner.
+5. Load the original subtitles into track 1 and the translation into track 2.
 
-Поддерживаются UTF-8, UTF-16, Windows-1251 и Windows-1252. Настройки и выбранные субтитры сохраняются в локальном хранилище расширения. После обновления исходников нажмите кнопку обновления на карточке расширения и перезагрузите вкладку с фильмом.
+UTF-8, UTF-16, Windows-1251, and Windows-1252 encodings are supported. Settings and selected subtitles are saved in the extension's local storage. After updating the source files, reload the extension on its management page and refresh the movie tab.
 
-Для автосинхронизации выберите участок с обычным диалогом, нажмите **Автосинхронизация · 30 с** и оставьте видео воспроизводиться до конца анализа. Расширение сравнит аудио с интервалами реплик и применит поправку при достаточной уверенности. Сдвиги больше 30 секунд отклоняются.
+For automatic synchronization, find a scene with ordinary dialogue, click **Auto-sync · 30 s**, and keep the video playing until analysis finishes. The extension compares audio activity with subtitle intervals and applies an offset when confidence is sufficient. Offsets greater than 30 seconds are rejected. The extension's controls also currently use Russian labels.
 
-## Ограничения
+## Limitations
 
-- **Форматы видео в macOS.** Приложение использует AVKit/AVFoundation. Предпочтительны MP4, M4V и MOV с системно поддерживаемыми кодеками. MKV, AVI, WebM и некоторые аудиодорожки могут не воспроизводиться; встроенного перекодирования нет.
-- **Форматы субтитров.** Поддерживаются SRT и WebVTT. Эффекты ASS/SSA и караоке не поддерживаются.
-- **Автосинхронизация.** Музыка, аудиокомментарии, другой монтаж и отличающийся дубляж могут ухудшить результат. При необходимости используйте ручной сдвиг.
-- **Браузерные плееры.** Расширению нужен доступный HTML5-элемент `<video>`. Автосинхронизация также требует доступа к аудио через браузерный API; отдельные плееры его ограничивают. В полноэкранном режиме используется собственный оверлей, а при разворачивании самого `<video>` — резервная WebVTT-дорожка.
-- **Picture in Picture.** В macOS пользовательские двойные субтитры могут отсутствовать в системном PiP.
-- **Распространение приложения.** Локальная ad-hoc подпись не заменяет Developer ID и нотарификацию для распространения без предупреждений Gatekeeper.
+- **macOS video formats.** The app uses AVKit/AVFoundation. MP4, M4V, and MOV with system-supported codecs are preferred. MKV, AVI, WebM, and some audio tracks may not play; there is no built-in transcoding.
+- **Subtitle formats.** SRT and WebVTT are supported. ASS/SSA effects and karaoke are not supported.
+- **Automatic synchronization.** Music, audio commentary, alternate edits, and different dubbing can reduce accuracy. Use manual offsets when needed.
+- **Browser players.** The extension requires an accessible HTML5 `<video>` element. Auto-sync also requires audio access through browser APIs, which some players restrict. Fullscreen playback uses a custom overlay; when the video element itself enters fullscreen, a native WebVTT track serves as a fallback.
+- **Picture in Picture.** Custom dual subtitles may not appear in the macOS system PiP window.
+- **App distribution.** A local ad-hoc signature does not replace Developer ID signing and notarization for distribution without Gatekeeper warnings.
 
-## Приватность и разрешения
+## Privacy and Permissions
 
-Расширение запрашивает доступ ко всем сайтам, чтобы находить плееры во вложенных фреймах разных видеохостингов. Работа разрешается только во вкладках, верхняя страница которых находится на `kinox.to` или его поддомене. Обработка субтитров и автосинхронизация выполняются локально; аудио не сохраняется в файл и не отправляется во внешние сервисы.
+The extension requests access to all websites to locate players inside frames hosted by different video services. It only allows operation in tabs whose top-level page is on `kinox.to` or one of its subdomains. Subtitle processing and auto-sync run locally; audio is neither saved to a file nor sent to external services.
 
-Приложение для macOS обрабатывает видео, аудио и субтитры локально. Интернет используется для выбранного пользователем поиска и скачивания субтитров, а также установки дополнительной языковой модели. При онлайн-поиске OpenSubtitles получает название, выбранные языки, размер и отпечаток видео, IP-адрес и версию приложения. Сам фильм, аудио и полный путь к файлу не отправляются. Подробнее: [онлайн-поиск и хранение данных](native/README.md#поиск-в-интернете).
+The macOS app processes video, audio, and subtitles locally. Internet access is used for user-requested subtitle search and downloads, and for installing the optional language model. During online searches, OpenSubtitles receives the title, selected languages, video file size and hash, IP address, and app version. The video, audio, and full file path are not uploaded. See [online search and data storage](native/README.md#online-search) for details.
 
-## Проверки
+## Testing
 
-Тесты расширения требуют Node.js 18+ и запускаются без сторонних npm-пакетов:
+Extension tests require Node.js 18+ and run without third-party npm packages:
 
 ```sh
 npm test
 ```
 
-Тесты приложения для macOS:
+Run the macOS app tests with:
 
 ```sh
 xcodebuild \
@@ -95,25 +95,25 @@ xcodebuild \
   test
 ```
 
-## Структура проекта
+## Project Structure
 
 ```text
 .
-├── manifest.json        # Manifest V3 расширения
-├── background.js        # Состояние и обмен сообщениями между фреймами
-├── content.js           # Поиск видео, интерфейс и отрисовка субтитров
-├── subtitle-parser.js   # Разбор SRT/WebVTT и кодировок
-├── autosync.js          # Расчёт сдвига по активности аудио
-├── styles.css           # Оформление расширения
-├── test/                # Тесты расширения
+├── manifest.json        # Extension Manifest V3
+├── background.js        # State and messaging between frames
+├── content.js           # Video discovery, UI, and subtitle rendering
+├── subtitle-parser.js   # SRT/WebVTT parsing and encoding detection
+├── autosync.js          # Offset estimation from audio activity
+├── styles.css           # Extension styles
+├── test/                # Extension tests
 └── native/
-    ├── KinoXPlayer/      # SwiftUI, AVKit, субтитры и онлайн-поиск
-    ├── KinoXPlayerTests/ # Тесты приложения
+    ├── KinoXPlayer/      # SwiftUI, AVKit, subtitles, and online search
+    ├── KinoXPlayerTests/ # App tests
     ├── KinoXPlayer.xcodeproj/
-    ├── Scripts/         # Скрипт Release-сборки
-    └── README.md        # Подробное руководство для macOS
+    ├── Scripts/         # Release build script
+    └── README.md        # Detailed macOS guide
 ```
 
-## Обратная связь
+## Feedback
 
-Сообщайте об ошибках и предлагайте улучшения через [Issues](https://github.com/Xenox-developer/kinoxSub/issues). Для ошибки укажите версию macOS или браузера, шаги воспроизведения и ожидаемый результат. Прикладывайте только те примеры субтитров, которыми можете поделиться; API-ключи и пароли в отчёт не включайте.
+Report bugs and suggest improvements through [Issues](https://github.com/Xenox-developer/kinoxSub/issues). For bug reports, include your macOS or browser version, steps to reproduce, and expected behavior. Only attach subtitle samples you have permission to share, and keep API keys and passwords out of reports.
